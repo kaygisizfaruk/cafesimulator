@@ -80,12 +80,30 @@ def order_item(order):
 
 
 def run():
-    order = Order(1)
+    order_counter = 1
     while True:
+        order = Order(order_counter)
         print("Welcome to the Cosy Cafe!")
         print("What can we get for you today?")
         order_item(order)
-        break
+        
+        while True:
+            print("\nWhat would you like to do next?\n")
+            print("1. View order summary")
+            print("2. Place a new order")
+            print("3. Exit")
+            option = input("\nPlease enter the number of your choice: ").strip()
+
+            if option == "1":
+                order.display_order()
+            elif option == "2":
+                order_counter += 1  # Increment the order counter for the new order
+                break  # Breaks out of the inner loop to place a new order
+            elif option == "3":
+                print("Thank you for visiting the Cosy Cafe! Goodbye!")
+                return  # Exits the program
+            else:
+                print("Invalid option. Please try again.")
         
 
 run()
